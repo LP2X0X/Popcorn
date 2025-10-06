@@ -3,15 +3,12 @@
 Popcorn is a movie search and rating web app built with **React**.  
 You can search for your favorite movies, see details, and give your own rating — all stored locally in your browser.
 
----
-
 ## 🚀 Features
 
 - 🔍 **Search Movies** — Find movies quickly using an external API or local data.
 - ⭐ **Rate Movies** — Add your personal rating for any movie.
 - 💾 **Persistent Storage** — Your ratings are saved with **localStorage**, so they stay even after you reload.
 
----
 
 ## 🧠 What I Learned
 
@@ -21,16 +18,12 @@ While building Popcorn, I learned how to:
 - Store and retrieve user data using `localStorage`.
 - Apply consistent visual design choices (colors, typography, and layout).
 
----
-
 ## 🛠️ Tech Stack
 
 - **React**
 - **JavaScript (ES6+)**
 - **CSS / Styled Components**
 - **localStorage API**
-
----
 
 ## 💻 Getting Started
 
@@ -54,7 +47,6 @@ npm run start
 
 Then open [http://localhost:3000](http://localhost:3000) to view the app in your browser.
 
----
 
 ## 🧩 Folder Structure
 
@@ -71,19 +63,19 @@ popcorn/
     └── index.html
 ```
 
----
-
 ## 🌈 UI Highlights
 
 * Modern and minimal interface
 * Thoughtful typography and color harmony
 
----
-
 ## 📸 Screenshots
+<img width="2378" height="1270" alt="image" src="https://github.com/user-attachments/assets/2a46e5eb-f2c0-4198-980e-2a4dc65bec6a" />
 
+## 🙋‍♂️ Author
 
----
+Long Pham
+
+Feel free to reach out or fork the project for your own practice.
 
 ## 📜 License
 
