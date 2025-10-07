@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Message from "./Message";
 import StarRating from "./StarRating";
+import useKey from "./useKey";
 
 const KEY = "4869cc13";
 
@@ -77,20 +78,7 @@ function MovieDetails({ selectedId, onBack, onAddMovie, watchedMovies }) {
     [selectedId]
   );
 
-  useEffect(
-    function () {
-      function callback(e) {
-        if (e.code.toLowerCase() === "Escape".toLowerCase()) {
-          onBack();
-        }
-      }
-
-      document.addEventListener("keydown", callback);
-
-      return () => document.removeEventListener("keydown", callback);
-    },
-    [onBack]
-  );
+  useKey({ key: "Escape", action: onBack });
 
   useEffect(
     function () {

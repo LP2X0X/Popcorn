@@ -8,21 +8,21 @@ import WatchedSummary from "./WatchedSummary.js";
 import MovieDetails from "./MovieDetails.js";
 import WatchedMovies from "./WatchedMovies.js";
 import WatchedMovie from "./WatchedMovie.js";
+import useFetchMovies from "./useFetchMovies.js";
 
 // Keep the .js in the name file for quick navigation with command click or F12
 
 const KEY = "4869cc13";
 
 function App() {
-  const [error, setError] = useState("");
   const [query, setQuery] = useState("");
-  const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [selectedId, setSelectedId] = useState("");
   const [watchedMovies, setWatchedMovies] = useState(function () {
     const storedValue = localStorage.getItem("watched");
     return storedValue ? JSON.parse(storedValue) : [];
   });
+
+  const { error, movies, isLoading } = useFetchMovies(query);
 
   function handleAddWatchedMovie(movie) {
     setWatchedMovies((movies) => [...movies, movie]);
@@ -45,59 +45,6 @@ function App() {
       localStorage.setItem("watched", watchedMovies);
     },
     [watchedMovies]
-  );
-
-  useEffect(
-    function () {
-      const controller = new AbortController();
-
-      async function fetchMovies() {
-        try {
-          setIsLoading(true);
-          setMovies([]); // Reset movies list after each fetch
-          setError("");
-
-          const res = await fetch(
-            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
-            { signal: controller.signal }
-          );
-
-          if (!res.ok) {
-            throw new Error(
-              "There is something wrong when fetching the movies data!"
-            );
-          }
-
-          const data = await res.json();
-
-          if (data.Response === "False") {
-            throw new Error("Movies not found!");
-          }
-
-          setMovies(data.Search);
-          setIsLoading(false);
-        } catch (err) {
-          if (err.name !== "AbortError") {
-            setIsLoading(false);
-            setError(err.message);
-          }
-        }
-      }
-
-      if (!query.length) {
-        setMovies([]); // Help reset movies found count
-        setError("");
-        return;
-      }
-
-      fetchMovies();
-
-      return function () {
-        setIsLoading(false);
-        controller.abort();
-      };
-    },
-    [query]
   );
 
   return (
