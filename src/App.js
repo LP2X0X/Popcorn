@@ -12,8 +12,6 @@ import useFetchMovies from "./useFetchMovies.js";
 
 // Keep the .js in the name file for quick navigation with command click or F12
 
-const KEY = "4869cc13";
-
 function App() {
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState("");
