@@ -15,9 +15,14 @@ import useFetchMovies from "./useFetchMovies.js";
 function App() {
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState("");
-  const [watchedMovies, setWatchedMovies] = useState(function () {
+  const [watchedMovies, setWatchedMovies] = useState(() => {
     const storedValue = localStorage.getItem("watched");
-    return storedValue ? JSON.parse(storedValue) : [];
+    try {
+      return storedValue ? JSON.parse(storedValue) : [];
+    } catch {
+      console.warn("Invalid JSON in localStorage for 'watched'");
+      return [];
+    }
   });
 
   const { error, movies, isLoading } = useFetchMovies(query);
@@ -40,7 +45,7 @@ function App() {
 
   useEffect(
     function () {
-      localStorage.setItem("watched", watchedMovies);
+      localStorage.setItem("watched", JSON.stringify(watchedMovies));
     },
     [watchedMovies]
   );

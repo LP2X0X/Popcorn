@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 
 const KEY = "4869cc13";
 
-export default function useFetchMovies({ query }) {
+export default function useFetchMovies(query) {
+  console.log(query);
   const [error, setError] = useState("");
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
