@@ -1,8 +1,12 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import useKey from "./useKey";
 
 function SearchBox({ query, setQuery }) {
   const inputEl = useRef(null);
+
+  useEffect(function () {
+    inputEl.current.focus();
+  }, []);
 
   useKey({ key: "Enter", action: setQuery });
 
