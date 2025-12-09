@@ -45,7 +45,7 @@ export default function useFetchMovies(query) {
         }
       }
 
-      if (!query.length) {
+      if (!query?.length) {
         setMovies([]); // Help reset movies found count
         setError("");
         return;
